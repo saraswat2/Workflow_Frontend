@@ -1,0 +1,220 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-dark: #000000;
+  --color-dark-surface: #0a0a0a;
+  --color-glass: rgba(255, 255, 255, 0.03);
+  --color-glass-border: rgba(255, 255, 255, 0.08);
+}
+
+@layer base {
+  body {
+    @apply bg-[#030303] text-white antialiased min-h-screen;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0a0a0a;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #4f46e5;
+    border-radius: 2px;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-white/[0.03] backdrop-blur-2xl border border-white/[0.08] shadow-[0_4px_30px_rgba(0,0,0,0.5)];
+  }
+}
+
+/* ────────────────────────────────────────────────────────────
+   LOADER STYLES
+──────────────────────────────────────────────────────────── */
+.loader-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #030303;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loader-terminal {
+  width: 460px;
+  max-width: 90vw;
+  background: #0c0c0c;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 0 80px rgba(79, 70, 229, 0.15), 0 24px 80px rgba(0, 0, 0, 0.7);
+}
+
+.loader-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 14px;
+  background: #111111;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.loader-dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.loader-header-label {
+  margin-left: auto;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.25);
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  letter-spacing: 0.03em;
+}
+
+.loader-body {
+  padding: 20px 20px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 110px;
+}
+
+.loader-line {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.loader-line-text {
+  font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace;
+  font-size: 13px;
+  color: #a78bfa;
+  letter-spacing: 0.02em;
+}
+
+.loader-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 14px;
+  background: #a78bfa;
+  border-radius: 1px;
+  animation: cursor-blink 0.8s step-end infinite;
+  margin-left: 1px;
+}
+
+@keyframes cursor-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.loader-progress-track {
+  height: 2px;
+  background: rgba(255, 255, 255, 0.06);
+  width: 100%;
+}
+
+.loader-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #4f46e5, #a78bfa);
+  transition: width 0.3s ease;
+  border-radius: 0 2px 2px 0;
+}
+
+/* ────────────────────────────────────────────────────────────
+   PROSE / ARTICLE CONTENT STYLES
+──────────────────────────────────────────────────────────── */
+.prose-content {
+  font-size: 16px;
+  line-height: 1.85;
+  color: #c0c0c8;
+}
+
+.prose-content h2 {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin-top: 2.5rem;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+}
+
+.prose-content p {
+  margin-bottom: 1.25rem;
+  color: #a0a0b0;
+}
+
+.prose-content strong {
+  color: #e0e0f0;
+  font-weight: 600;
+}
+
+.prose-content em {
+  color: #b0a0d8;
+  font-style: italic;
+}
+
+.prose-content ul,
+.prose-content ol {
+  margin: 1rem 0 1.5rem 0;
+  padding-left: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.prose-content ul li {
+  list-style: none;
+  position: relative;
+  padding-left: 1.25rem;
+  color: #a0a0b0;
+}
+
+.prose-content ul li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.6rem;
+  width: 5px;
+  height: 5px;
+  background: #6366f1;
+  border-radius: 50%;
+}
+
+.prose-content ol li {
+  list-style: decimal;
+  color: #a0a0b0;
+}
+
+.prose-content pre {
+  background: #0a0a12;
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  border-radius: 10px;
+  padding: 1.25rem 1.5rem;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+  box-shadow: 0 0 30px rgba(79, 70, 229, 0.08);
+}
+
+.prose-content code {
+  font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace;
+  font-size: 13px;
+  color: #a78bfa;
+  line-height: 1.7;
+}
+
+.prose-content pre code {
+  color: #c4b5fd;
+}
